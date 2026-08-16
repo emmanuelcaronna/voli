@@ -30,6 +30,15 @@
 --pmo:#59B3A6;--tps:#E08A5E;--cta:#9A93E8;--good:#6BC48F;--focus:#6FB3F2;
 --crest:#080B10;--crest-ink:#EDF1F6;--crest-faint:#79838F;--crest-gold:#F0B65E;}
 *{box-sizing:border-box}
+/* ⚠️ SERVE, e senza si rompe l'interruttore fra le due viste (16/08/2026).
+   `hidden` è un attributo che il browser onora con un `display:none` di
+   default — ma è la regola MENO forte che esista, e qui `.board`, `.cal` e
+   `.group` dichiarano tutte `display:flex` da una classe, che vince. Effetto:
+   il JavaScript metteva l'attributo davvero, e non succedeva niente: classifica
+   e calendario restavano visibili insieme e i pulsanti sembravano morti.
+   Trovato da Emmanuel guardando la pagina, non da un test — un errore di
+   cascata non fa fallire niente, produce solo una pagina che non ubbidisce. */
+[hidden]{display:none!important}
 body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
 font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1140px;margin:0 auto;padding:clamp(1rem,4vw,2.5rem);
